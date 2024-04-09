@@ -46,4 +46,4 @@ const Credits = (props) => {
   );
 }
 
-export default Credits;
+export default Credits; 
