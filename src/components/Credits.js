@@ -18,12 +18,15 @@ const Credits = (props) => {
 
   let updateEntry = (event) => {
     event.preventDefault();
-    props.updateBalance([Number(props.accountBalance) + Number(event.target.amount.value)]);
+    const roundedAmount = Number(event.target.amount.value).toFixed(2);
+    const newBalance = Number(props.accountBalance) + Number(roundedAmount);
+    props.updateBalance([newBalance.toFixed(2)]);
+
 
     const credit = {
       id: props.credits.length + 1,
       description: event.target.description.value,
-      amount: event.target.amount.value,
+      amount: roundedAmount,
       date: new Date()
     }
 
@@ -37,7 +40,7 @@ const Credits = (props) => {
 
       <form onSubmit={updateEntry}>
         <input type="text" name="description" />
-        <input type="number" min="0"  step="0.01" name="amount" />
+        <input type="number" min="0"  step="any" name="amount" />
         <button type="submit">Add Credit</button>
       </form>
       <br/>

@@ -19,12 +19,14 @@ const Debits = (props) => {
 
   let updateEntry = (event) => {
     event.preventDefault();
-    props.updateBalance([props.accountBalance - event.target.amount.value]);
+    const roundedAmount = Number(event.target.amount.value).toFixed(2);
+    const newBalance = Number(props.accountBalance) - Number(roundedAmount);
+    props.updateBalance([newBalance.toFixed(2)]);
 
     const debit = {
       id: props.debits.length + 1,
       description: event.target.description.value,
-      amount: event.target.amount.value,
+      amount: roundedAmount,
       date: new Date()
     }
 
@@ -39,7 +41,7 @@ const Debits = (props) => {
 
       <form onSubmit={updateEntry}>
         <input type="text" name="description" />
-        <input type="number" min="0" step="0.01" name="amount" />
+        <input type="number" min="0" step="any" name="amount" />
         <button type="submit">Add Debit</button>
       </form>
       <br/>
