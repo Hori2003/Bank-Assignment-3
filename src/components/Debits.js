@@ -39,7 +39,7 @@ const Debits = (props) => {
 
       <form onSubmit={updateEntry}>
         <input type="text" name="description" />
-        <input type="number" name="amount" />
+        <input type="number" min="0" name="amount" step="0.01"/> 
         <button type="submit">Add Debit</button>
       </form>
       <br/>
